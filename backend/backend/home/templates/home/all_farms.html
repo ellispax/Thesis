@@ -58,6 +58,7 @@
             <th scope="col" class="text-center">Location</th>
             <th scope="col" class="text-center">Size</th>
             <th scope="col" class="text-center">Status</th>
+            <th scope="col" class="text-center">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -71,7 +72,9 @@
             <td class="align-middle text-center">{{ farm.size }}</td>
             <td class="align-middle text-center">{{ farm.status }}</td>
             <td class="align-middle text-center">
-              <a href="" class="btn btn-danger">Update</a>
+              <a href="{% url 'farm-update' farm.pk %}" class="btn btn-danger"
+                >Update</a
+              >
             </td>
           </tr>
           {% endfor %}

@@ -6,7 +6,7 @@ urlpatterns = [
     path('dashboard', views.dashboard, name='dashboard'),
     path('farm-show', views.farm_show, name='farm-show'),
     # path('search-company', views.search_company, name='search-company'),
-    # path('company-update/<int:pk>', views.company_update, name='company-update'),
+    path('farm-update/<int:pk>', views.farm_update, name='farm-update'),
     # path('print-employees/<int:pk>', views.print_employees, name='print-employees'),
     # path('company-rates/<int:pk>', views.company_rates, name='company-rates'),
     # path('company-gov-deducts/<int:pk>',

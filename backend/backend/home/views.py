@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Farm 
 # from employee.models import Employee, Employee_hiring_details
-# from logs.models import Logs
+from transactions.models import Transaction
 from settings.models import Settings
 
 from .forms import FarmAddForm
@@ -61,7 +61,7 @@ def farm_add(request):
         if form.is_valid():
             farm = form.save()
             action = f"created farm '{farm.farm_name}'"
-            Logs.objects.create(action=action, action_by=request.user, action_date=datetime.now())
+            #Logs.objects.create(action=action, action_by=request.user, action_date=datetime.now())
 
             messages.success(
                 request, f'New Farm%s was successfully created.' % (farm.farm_name))
@@ -76,3 +76,69 @@ def farm_add(request):
         'form': form
     }
     return render(request, 'home/farm_add.html', context)
+
+
+@login_required
+def farm_update(request, pk):
+    farm = get_object_or_404(Farm, id=pk)
+    try:
+        sts = Farm.objects.get(pk = pk)
+
+        if sts:
+            STATUS = sts.status
+    except:
+
+        print("The user doesn't exist")
+
+    if request.method == 'POST':
+        form = FarmAddForm(request.POST or None, instance=farm)
+        if STATUS == 1:
+            action = 0
+        else:
+            action = 1
+        if form.is_valid():
+            form.save()
+            #action = ""
+            Transaction.objects.create(action=action, action_by=request.user, action_date=datetime.now())
+            messages.success(request, f'Farm Status was successfully updated.')
+            return redirect('farm-show')
+    else:
+        form = FarmAddForm(instance=farm)
+
+
+    gen_settings = Settings.objects.get(id=1)
+    context = {
+        'main_farm': gen_settings.main_farm,
+        'head': 'Update Farm Status',
+        'page_nick': 'f-update',
+        'form': form,
+        'farm_id': pk
+    }
+    return render(request, 'home/farm_update.html', context)
+
+
+# def company_gov_deducts(request, pk):
+#     company = get_object_or_404(Company_rates, company=pk)
+    
+#     if request.method == 'POST':
+#         form = CompanyGovDeduct(request.POST or None, instance=company)
+#         if form.is_valid():
+#             form.save()
+
+#             action = f"{company} deductions has been updated. sss={request.POST['sss']}, philhealth={request.POST['philhealth']}, pagibig={request.POST['pagibig']}"
+#             Logs.objects.create(action=action, action_by=request.user, action_date=datetime.now())
+
+#             messages.success(request, f'Company Government deductions was successfully updated.')
+#             return redirect('company-gov-deducts', pk=pk)
+#     else:
+#         form = CompanyGovDeduct(instance=company)
+
+#     gen_settings = General_settings.objects.get(id=1)
+#     context = {
+#         'main_company': gen_settings.main_company,
+#         'page_nick': 'gov-deducts',
+#         'head': 'Update Government Deductions',
+#         'form': form,
+#         'company_id': pk
+#     }
+#     return render(request, 'hrms/company_update.html', context)
