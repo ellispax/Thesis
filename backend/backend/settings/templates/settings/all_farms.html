@@ -6,7 +6,7 @@
   </div>
 
   <div class="card-body">
-    <a href='{% url "farm-add" %}' class="btn btn-danger">Add Farm</a>
+    <!-- <a href='{% url "farm-add" %}' class="btn btn-danger">Add Farm</a> -->
 
     {% comment %}
 
@@ -72,8 +72,8 @@
             <td class="align-middle text-center">{{ farm.size }}</td>
             <td class="align-middle text-center">{{ farm.status }}</td>
             <td class="align-middle text-center">
-              <a href="{% url 'farm-update' farm.pk %}" class="btn btn-danger"
-                >Toggle</a
+              <a href="{% url 'update-view' farm.pk %}" class="btn btn-danger"
+                >Update</a
               >
             </td>
           </tr>

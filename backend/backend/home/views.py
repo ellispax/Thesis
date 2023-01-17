@@ -12,6 +12,7 @@ from .forms import FarmAddForm
 from django.contrib import messages
 import xlwt
 from datetime import datetime, timedelta
+from django.utils import timezone
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
@@ -99,7 +100,7 @@ def farm_update(request, pk):
         if form.is_valid():
             form.save()
             #action = ""
-            Transaction.objects.create(action=action, action_by=request.user, action_date=datetime.now())
+            Transaction.objects.create(action=action, action_by=request.user, farm_id = pk, action_date=datetime.now(),action_time=timezone.now())
             messages.success(request, f'Farm Status was successfully updated.')
             return redirect('farm-show')
     else:

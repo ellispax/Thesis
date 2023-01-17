@@ -10,3 +10,4 @@ class Transaction(models.Model):
     action_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="logs_user")
     action = models.BooleanField()
     action_date = models.DateField()
+    action_time = models.TimeField()
