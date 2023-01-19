@@ -39,6 +39,8 @@ def dashboard(request):
 @login_required
 def farm_show(request):
     farms = Farm.objects.all()
+
+    print(farms)
     gen_settings = Settings.objects.filter(id=1).first()
     if gen_settings:
         request.session['main_farm'] = gen_settings.main_farm

@@ -4,7 +4,9 @@ from .forms import GeneralInfoForm
 from django.contrib import messages
 from home.models import Farm
 from home.forms import FarmAddForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def update_show(request):
     farms = Farm.objects.all()
     gen_settings = Settings.objects.filter(id=1).first()
@@ -22,6 +24,7 @@ def update_show(request):
     return render(request, 'settings/all_farms.html', context)
 
 
+@login_required
 def update_view(request, pk):
     farm = get_object_or_404(Farm, id=pk)
     # try:
@@ -60,7 +63,7 @@ def update_view(request, pk):
     return render(request, 'settings/update_farm.html', context)
 
 
-
+@login_required
 def general_info(request):
 	data = get_object_or_404(Settings, pk=1)
 	form = GeneralInfoForm(request.POST or None, instance=data)

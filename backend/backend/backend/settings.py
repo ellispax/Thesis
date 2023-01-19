@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'login',
     'home',
     'settings',
-    'transactions'
+    'transactions',
+    'manager',
+    'analytics'
 ]
 
 MIDDLEWARE = [

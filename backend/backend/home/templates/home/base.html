@@ -69,9 +69,9 @@
                         <nav class="drawer  drawer--dark bg-danger">
                             <div class="drawer-spacer">
                                 <div class="media align-items-center">
-                                    <a href="index.html" class="drawer-brand-circle mr-2 bg-success">I</a>
+                                    <a href="" class="drawer-brand-circle mr-2 bg-success">I</a>
                                     <div class="media-body">
-                                        <a href="index.html" class="h5 m-0 text-link">Irrigate</a>
+                                        <a href="" class="h5 m-0 text-link">Irrigate</a>
                                     </div>
                                 </div>
                             </div>
@@ -97,13 +97,13 @@
                                 {% endcomment %}
                                
                                 <li class="drawer-menu-item active ">
-                                    <a href=''>                                        
+                                    <a href='{% url "graph-show" %}'>                                        
                                         <span class="drawer-menu-text">Analytics</span>
                                     </a>
                                 </li>
 
                                 <li class="drawer-menu-item active ">
-                                    <a href=''>                                        
+                                    <a href='{% url "manage-show" %}'>                                        
                                         <span class="drawer-menu-text">Manage</span>
                                     </a>
                                 </li>
