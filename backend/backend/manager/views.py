@@ -7,7 +7,7 @@ from .models import Manage
 from transactions.models import Transaction
 from settings.models import Settings
 
-#from .forms import FarmAddForm
+from .forms import ManageUpdateForm
 
 from django.contrib import messages
 import xlwt
@@ -37,3 +37,44 @@ def manage_show(request):
         'farms': man
     }
     return render(request, 'manager/index.html', context)
+
+
+@login_required
+def update_view(request, pk):
+    manage = get_object_or_404(Manage, id=pk)
+    # try:
+    #     sts = Farm.objects.get(pk = pk)
+
+    #     if sts:
+    #         STATUS = sts.status
+    # except:
+
+    #     print("The user doesn't exist")
+
+    if request.method == 'POST':
+        # form = FarmAddForm(request.POST or None, instance=farm)
+        form = ManageUpdateForm(request.POST or None, instance=manage)
+        # if STATUS == 1:
+        #     action = 0
+        # else:
+        #     action = 1
+        if form.is_valid():
+            form.save()
+            #action = ""
+            # Transaction.objects.create(action=action, action_by=request.user, farm_id = pk, action_date=datetime.now(),action_time=timezone.now())
+            messages.success(request, f'Pre-set Values were successfully updated.')
+            return redirect('manage-show')
+    else:
+        # form = FarmAddForm(instance=farm)
+        form = ManageUpdateForm(instance=manage)
+
+
+    gen_settings = Settings.objects.get(id=1)
+    context = {
+        'main_farm': gen_settings.main_farm,
+        'head': 'Update Farm Details',
+        'page_nick': 'fd-update',
+        'form': form,
+        'farm_id': pk
+    }
+    return render(request, 'manager/update.html', context)

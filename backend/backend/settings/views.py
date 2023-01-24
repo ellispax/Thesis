@@ -4,6 +4,7 @@ from .forms import GeneralInfoForm
 from django.contrib import messages
 from home.models import Farm
 from home.forms import FarmAddForm
+from .forms import UpdateFarmForm
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -37,7 +38,8 @@ def update_view(request, pk):
     #     print("The user doesn't exist")
 
     if request.method == 'POST':
-        form = FarmAddForm(request.POST or None, instance=farm)
+        # form = FarmAddForm(request.POST or None, instance=farm)
+        form = UpdateFarmForm(request.POST or None, instance=farm)
         # if STATUS == 1:
         #     action = 0
         # else:
@@ -49,7 +51,8 @@ def update_view(request, pk):
             messages.success(request, f'Farm Details were successfully updated.')
             return redirect('update-show')
     else:
-        form = FarmAddForm(instance=farm)
+        # form = FarmAddForm(instance=farm)
+        form = UpdateFarmForm(instance=farm)
 
 
     gen_settings = Settings.objects.get(id=1)
