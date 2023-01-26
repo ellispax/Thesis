@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'settings',
     'transactions',
     'manager',
-    'analytics'
+    'analytics',
+    'chartjs'
 ]
 
 MIDDLEWARE = [

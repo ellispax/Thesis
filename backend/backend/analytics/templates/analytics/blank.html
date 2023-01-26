@@ -1,0 +1,94 @@
+{% extends "home/base.html" %} {% load crispy_forms_tags %} {% block content %}
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <style>
+    form {
+      display: grid;
+      grid-gap: 10px;
+      display: inline-block;
+    }
+    .inline-block {
+      display: inline-block;
+      width: fit-content;
+    }
+    #farm_id {
+      width: 200px;
+      height: 25px;
+      padding: 5px;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+    #date {
+      width: 200px;
+      height: 25px;
+      padding: 5px;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">
+      <strong>Comprehensive Graph for &nbsp;&nbsp;&nbsp; {{date}}</strong>
+    </h4>
+  </div>
+</div>
+
+<form method="post">
+  {% csrf_token %}
+  <label for="farm_id" class="inline">Farm ID:</label>
+  <select name="farm_id" id="farm_id" class="inline">
+    {% for farm in farms %}
+    <option value="{{ farm.farm_id }}">{{ farm.farm_id }}</option>
+    {% endfor %}
+  </select>
+  <label for="date" class="inline">Date:</label>
+  <input type="date" id="date" name="date" class="inline" />
+  <input type="submit" id="btn" value="Submit" class="inline" />
+</form>
+
+{% if measurements %}
+<canvas id="line-chart" width="800" height="350"></canvas>
+<script>
+  var ctx = document.getElementById('line-chart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: [{% for measurement in measurements %}'{{ measurement.time }}',{% endfor %}],
+          datasets: [{
+              label: 'Temperature (*C)',
+              data: [{% for measurement in measurements %}{{ measurement.temp }},{% endfor %}],
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+          }, {
+              label: 'pH',
+              data: [{% for measurement in measurements %}{{ measurement.pH }},{% endfor %}],
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+          }, {
+              label: 'Humidity (%)',
+              data: [{% for measurement in measurements %}{{ measurement.humidity }},{% endfor %}],
+              backgroundColor: 'rgba(255, 206, 86, 0.2)',
+              borderColor: 'rgba(255, 206, 86, 1)',
+              borderWidth: 1
+          }, {
+              label: 'Moisture (%)',
+              data: [{% for measurement in measurements %}{{ measurement.moisture }},{% endfor %}],
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+</script>
+{% endif %} {% endblock content%}
