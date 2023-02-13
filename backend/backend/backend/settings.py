@@ -89,23 +89,23 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'irrigationdb',
-        'USER': 'admin',
-        'PASSWORD': 'ATEyspy2QIG)',
-        'HOST': 'irrigation.cwikznmtsvgr.us-east-1.rds.amazonaws.com',   
-        'PORT': '3306',
-}   
-
-#  'default': {
+#     'default': {
 #         'ENGINE': 'django.db.backends.mysql', 
-#         'NAME': 'irrigation_back',
-#         'USER': 'root',
-#         'PASSWORD': '',
-#         'HOST': '127.0.0.1',   
+#         'NAME': 'irrigationdb',
+#         'USER': 'admin',
+#         'PASSWORD': 'ATEyspy2QIG)',
+#         'HOST': 'irrigation.cwikznmtsvgr.us-east-1.rds.amazonaws.com',   
 #         'PORT': '3306',
-# } 
+# }   
+
+ 'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'irrigation_back',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',   
+        'PORT': '3306',
+} 
 
 }
 

@@ -40,7 +40,7 @@ def manage_show(request):
 
 
 @login_required
-def update_view(request, pk):
+def manage_updateview(request, pk):
     manage = get_object_or_404(Manage, id=pk)
     # try:
     #     sts = Farm.objects.get(pk = pk)

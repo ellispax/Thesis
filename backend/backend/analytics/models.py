@@ -11,7 +11,7 @@ class measurements(models.Model):
     pH = models.FloatField()
     humidity = models.FloatField()
     moisture = models.FloatField()
-    timeStamp = models.CharField(default = '2023121172241',max_length=50)
+    timeStamp = models.CharField(default = '2023101000000',max_length=50)
 
     def __str__(self):
         return f'{self.farm}'
