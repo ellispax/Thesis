@@ -7,7 +7,7 @@ from .models import Farm
 from transactions.models import Transaction
 from settings.models import Settings
 
-from .forms import FarmAddForm
+from .forms import FarmAddForm, FarmToggleStatus
 
 from django.contrib import messages
 import xlwt
@@ -94,7 +94,8 @@ def farm_update(request, pk):
         print("The user doesn't exist")
 
     if request.method == 'POST':
-        form = FarmAddForm(request.POST or None, instance=farm)
+        # form = FarmAddForm(request.POST or None, instance=farm)
+        form = FarmToggleStatus(request.POST or None, instance=farm)
         if STATUS == 1:
             action = 0
         else:
@@ -106,7 +107,7 @@ def farm_update(request, pk):
             messages.success(request, f'Farm Status was successfully updated.')
             return redirect('farm-show')
     else:
-        form = FarmAddForm(instance=farm)
+        form = FarmToggleStatus(instance=farm)
 
 
     gen_settings = Settings.objects.get(id=1)

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import measurements
 from django.views.generic import TemplateView
-from chartjs.views.lines import BaseLineChartView
+#from chartjs.views.lines import BaseLineChartView
 
 # Create your views here.
 

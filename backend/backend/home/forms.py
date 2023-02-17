@@ -6,3 +6,14 @@ class FarmAddForm(forms.ModelForm):
     class Meta:
         model = Farm
         fields = ['farm_name', 'location', 'size', 'status']
+
+
+class FarmToggleStatus(forms.ModelForm):
+    class Meta:
+        model = Farm
+        fields = ['farm_name', 'location', 'size', 'status']
+        widgets = {
+            'farm_name': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'location': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'size': forms.TextInput(attrs={'readonly': 'readonly'}),
+        }

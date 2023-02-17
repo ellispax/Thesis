@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'transactions',
     'manager',
     'analytics',
-    'chartjs'
+    'chartjs',
+    'crispy_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -159,7 +160,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CRISPY_TEMPLATE_PACK =  'bootstrap4'
+CRISPY_TEMPLATE_PACK =  'bootstrap5'
 #LOGIN_REDIRECT_URL =  '/'
 #LOGIN_REDIRECT_URL =  'login/'
 LOGIN_URL = 'login'
