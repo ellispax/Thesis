@@ -2,10 +2,10 @@
 
 <div class="card">
   <div class="card-body">
-    <a href="{% url 'update-show'%}" class="btn btn-warning">Go back</a>
+    <a href="{% url 'manage-show'%}" class="btn btn-warning">Go back</a>
 
     <a
-      href="{% url 'update-view' farm_id %}"
+      href="{% url 'manage-update-view' farm_id %}"
       class="btn btn-{% if page_nick == 'f-update'%}primary{% else %}warning{% endif %}"
       >Update</a
     >

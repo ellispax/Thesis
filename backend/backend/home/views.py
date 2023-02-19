@@ -49,7 +49,7 @@ def farm_show(request):
     # return render(request, 'hrms/dashboard.html', context)
 
     context = {
-        'title': 'farm',
+        'title': 'Farm Display',
         'head': 'Farms',
         'farms': farms
     }
@@ -75,6 +75,7 @@ def farm_add(request):
     gen_settings = Settings.objects.get(id=1)
     context = {
         'main_farm': gen_settings.main_farm,
+        'title': 'Add Farm',
         'head': 'Add Farm',
         'form': form
     }

@@ -18,8 +18,8 @@ def update_show(request):
     # return render(request, 'hrms/dashboard.html', context)
 
     context = {
-        'title': 'farm',
-        'head': 'Farms Details Update',
+        'title': 'Update Farm Details',
+        'head': 'Settings',
         'farms': farms
     }
     return render(request, 'settings/all_farms.html', context)
@@ -79,6 +79,7 @@ def general_info(request):
 
 	context = {
 		"page_nick": 'general-info',
+        'title': 'Settings',
 		"head" : "Settings",
 		"form": form,
 		"main_farm": data

@@ -32,7 +32,7 @@ def manage_show(request):
     # return render(request, 'hrms/dashboard.html', context)
 
     context = {
-        'title': 'manage',
+        'title': 'Manage Settings Display',
         'head': 'Manage',
         'farms': man
     }
@@ -72,7 +72,8 @@ def manage_updateview(request, pk):
     gen_settings = Settings.objects.get(id=1)
     context = {
         'main_farm': gen_settings.main_farm,
-        'head': 'Update Farm Details',
+        'title': 'Update Manage Settings',
+        'head': 'Update Manage Settings',
         'page_nick': 'fd-update',
         'form': form,
         'farm_id': pk
