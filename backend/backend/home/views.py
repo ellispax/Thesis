@@ -78,7 +78,7 @@ def farm_add(request):
         'title': 'Add Farm',
         'head': 'Add Farm',
         'form': form
-    }
+    } 
     return render(request, 'home/farm_add.html', context)
 
 
