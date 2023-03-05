@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 def index(request):
 	if request.user.is_authenticated:
-		return redirect("/farm-show")
+		return redirect("/dashboard")
 		
 	if request.method == "POST":
 		username = request.POST['username']
@@ -16,7 +16,7 @@ def index(request):
 		if user is not None:
 			auth.login(request, user)
 			messages.success(request, "Your are now logged in")
-			return redirect("/farm-show")
+			return redirect("/dashboard")
 		else:
 			messages.error(request, "Invalid credentials")
 			return redirect("login")

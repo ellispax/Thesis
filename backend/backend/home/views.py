@@ -20,12 +20,14 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def dashboard(request):
-    
+    farms = Farm.objects.all()
+
     gen_settings = Settings.objects.get(id=1)
     context = {
         'main_farm': gen_settings.main_farm,
         'title': 'farm',
-        'head': 'Farms'
+        'head': 'Farms',
+        'farms': farms
     }
     
     if gen_settings:
@@ -63,6 +65,7 @@ def farm_add(request):
         form = FarmAddForm(request.POST)
         if form.is_valid():
             farm = form.save()
+            #create a new row in the manage tab with same id as the new farm and vaues set to 0
             action = f"created farm '{farm.farm_name}'"
             #Logs.objects.create(action=action, action_by=request.user, action_date=datetime.now())
 
