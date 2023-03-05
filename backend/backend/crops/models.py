@@ -8,6 +8,7 @@ class Crops(models.Model):
     pH = models.FloatField()
     humidity = models.FloatField()
     moisture = models.FloatField()
+    water_needed = models.FloatField()
 
     def __str__(self):
         return f'{self.cropName}'

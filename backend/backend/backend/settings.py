@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'manager',
     'analytics',
     'chartjs',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    'crops',
 ]
 
 MIDDLEWARE = [

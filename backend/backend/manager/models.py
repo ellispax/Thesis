@@ -6,7 +6,7 @@ from home.models import Farm
 # Create your models here.
 
 class Manage(models.Model):
-    farm= models.ForeignKey(Farm, on_delete=models.CASCADE, related_name="mg_farm_name", null=True, blank=True)
+    farm= models.ForeignKey(Farm, on_delete=models.CASCADE, related_name="mg_farm_name", blank=True)
     temp = models.FloatField()
     humidity = models.FloatField()
     moisture = models.FloatField()

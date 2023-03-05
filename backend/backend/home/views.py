@@ -15,6 +15,9 @@ from datetime import datetime, timedelta
 from django.utils import timezone
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from manager.models import Manage
+from crops.models import   Crops
+
 
 
 
@@ -65,8 +68,17 @@ def farm_add(request):
         form = FarmAddForm(request.POST)
         if form.is_valid():
             farm = form.save()
+
+            selected_crop = form.cleaned_data['crop']
+
+            # get the crop object from the database
+            crop = Crops.objects.get(cropName=selected_crop)
+
+            # create a new Manage object with the newly created farm as the foreign key
+            manage = Manage.objects.create(farm=farm, temp=crop.temp, humidity=crop.humidity, moisture=crop.moisture, pH=crop.pH, water=crop.water_needed)
             #create a new row in the manage tab with same id as the new farm and vaues set to 0
             action = f"created farm '{farm.farm_name}'"
+
             #Logs.objects.create(action=action, action_by=request.user, action_date=datetime.now())
 
             messages.success(

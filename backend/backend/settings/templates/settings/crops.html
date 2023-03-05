@@ -1,16 +1,15 @@
 {% extends "home/base.html" %} {% block content %}
 <head>
   <style type="text/css">
-
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
+  }
 
-    .card-header .btn {
-      margin-left: auto;
-    }
+  .card-header .btn {
+    margin-left: auto;
+  }
 
 
   </style>
@@ -18,11 +17,12 @@
 <div class="card">
   <div class="card-header">
     <h4 class="card-title">{{ head }}</h4>
-    <a href='{% url "farm-add" %}' class="btn btn-danger ml-auto">Add Farm</a>
+    <a href='{%url 'add-crop'%}' class="btn btn-danger ml-auto">Add Crop</a>
   </div>
 
   <div class="card-body">
     
+
     {% comment %}
 
     <form
@@ -36,8 +36,8 @@
         <div class="col example-grid-col">
           <select class="form-control" name="company">
             <option value="">Choose farm</option>
-            {% for com in farms %}
-            <option value="{{com.farm_name}}">{{com.farm_name}}</option>
+            {% for com in crops %}
+            <option value="{{com.farm_name}}">{{com.cropName}}</option>
             {% endfor %}
           </select>
         </div>
@@ -69,26 +69,38 @@
         <thead class="bg-success text-white">
           <tr>
             <th scope="col" class="text-center">#</th>
-            <th scope="col" class="text-center">Farm Name</th>
-            <th scope="col" class="text-center">Location</th>
-            <th scope="col" class="text-center">Size</th>
-            <th scope="col" class="text-center">Status</th>
+            <th scope="col" class="text-center">Crop Name</th>
+            <th scope="col" class="text-center">Region</th>
+            <th scope="col" class="text-center">Temperature</th>
+            <th scope="col" class="text-center">pH</th>
+            <th scope="col" class="text-center">Humidity</th>
+            <th scope="col" class="text-center">Moisture</th>
+            <th scope="col" class="text-center">Water</th>
+            <th scope="col" class="text-center">Action</th>
             <th scope="col" class="text-center">Action</th>
           </tr>
         </thead>
         <tbody>
-          {% for farm in farms %}
+          {% for crop in crops %}
           <tr>
             <th class="align-middle text-center" scope="row">
               {{ forloop.counter}}
             </th>
-            <td class="align-middle text-center">{{ farm.farm_name|upper }}</td>
-            <td class="align-middle text-center">{{ farm.location|title }}</td>
-            <td class="align-middle text-center">{{ farm.size }}</td>
-            <td class="align-middle text-center">{{ farm.status }}</td>
+            <td class="align-middle text-center">{{ crop.cropName|upper }}</td>
+            <td class="align-middle text-center">{{ crop.region|title }}</td>
+            <td class="align-middle text-center">{{ crop.temp }}</td>
+            <td class="align-middle text-center">{{ crop.pH }}</td>
+            <td class="align-middle text-center">{{ crop.humidity }}</td>
+            <td class="align-middle text-center">{{ crop.moisture }}</td>
+            <td class="align-middle text-center">{{ crop.water_needed }}</td>
             <td class="align-middle text-center">
-              <a href="{% url 'farm-update' farm.pk %}" class="btn btn-danger"
-                >Toggle</a
+              <a href="{%url 'update-crop' crop.pk%}" class="btn btn-danger"
+                >Update</a
+              >
+            </td>
+            <td class="align-middle text-center">
+              <a href="" class="btn btn-danger"
+                >Delete</a
               >
             </td>
           </tr>
