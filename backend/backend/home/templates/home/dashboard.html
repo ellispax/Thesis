@@ -10,8 +10,16 @@
       color: white;
     }
 
-    .w3-panel p {
+    .w3-panel h3 {
       padding-top: 10px;
+      padding-left: 0px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      font-size: large;
+    }
+    .w3-panel{
+      align-items: center;
+      text-align: center;
     }
 
     .closebtn {
@@ -36,15 +44,30 @@
 
  
 
-
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const timeString = hours.toString().padStart(2, '0') + ':' +
+                         minutes.toString().padStart(2, '0') + ':' +
+                         seconds.toString().padStart(2, '0');
+      document.getElementById('clock').textContent = timeString;
+    }
+  
+    setInterval(updateClock, 1000);
+  </script>
 </head>
 <br>
 
 {%include 'home/cards.html'%}
 
 <div class="w3-panel w3-grey">
-  <p>Notice Board</p>
+  <h3>Weather Outlook {{date}}</h3> <h3 id="clock"></h3>
 </div><br>
+
 
 {%include 'home/notice-cards.html'%}
 {% endblock content %}
+

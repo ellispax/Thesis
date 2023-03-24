@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Farm 
+from datetime import date
 # from employee.models import Employee, Employee_hiring_details
 from transactions.models import Transaction
 from settings.models import Settings
@@ -17,12 +18,44 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from manager.models import Manage
 from crops.models import   Crops
+import requests, json
 
 
 
 
 @login_required
 def dashboard(request):
+   # q={city name}
+    response = requests.get("https://api.openweathermap.org/data/2.5/weather?q=maputo&units=metric&appid=c263e33729247d585b1bf41636fc4062")
+    
+
+    #response = requests.get("https://api.openweathermap.org/data/2.5/weather?lat=6.2088&lon=106.8456&units=metric&appid=c263e33729247d585b1bf41636fc4062")
+    
+    #response = requests.get("https://api.openweathermap.org/data/3.0/onecall?lat=-19.45132100&lon=29.81773900&exclude=hourly,daily&appid=c263e33729247d585b1bf41636fc4062")
+    
+    if response.status_code == 200:
+        weather_data = response.json()
+        w_data = weather_data['main']
+        temp = w_data['temp']
+        temp_max = w_data['temp_max']
+        temp_min = w_data['temp_min']
+        humidity = w_data['humidity']
+        pressure = w_data['pressure']
+        rain_data = weather_data['weather']
+        rain_desc = rain_data[0]['description']
+        print(temp, temp_min, temp_max, humidity, pressure, rain_desc)
+    else:
+        print("Error in the HTTP request")
+        temp = 'err'
+        humidity = 'err'
+        pressure = 'err'
+        rain_desc = 'err'
+        temp_max = 'err'
+        temp_min = 'err'
+
+    
+    dt = date.today()
+    
     farms = Farm.objects.all()
 
     gen_settings = Settings.objects.get(id=1)
@@ -30,7 +63,14 @@ def dashboard(request):
         'main_farm': gen_settings.main_farm,
         'title': 'farm',
         'head': 'Farms',
-        'farms': farms
+        'farms': farms,
+        'date' : dt,
+        'temp' : temp,
+        'tempMin': temp_min,
+        'tempMax': temp_max,
+        'humidity': humidity,
+        'rain': rain_desc,
+        'pressure': pressure,
     }
     
     if gen_settings:
@@ -136,29 +176,12 @@ def farm_update(request, pk):
     }
     return render(request, 'home/farm_update.html', context)
 
-
-# def company_gov_deducts(request, pk):
-#     company = get_object_or_404(Company_rates, company=pk)
+def weather(request):
     
-#     if request.method == 'POST':
-#         form = CompanyGovDeduct(request.POST or None, instance=company)
-#         if form.is_valid():
-#             form.save()
 
-#             action = f"{company} deductions has been updated. sss={request.POST['sss']}, philhealth={request.POST['philhealth']}, pagibig={request.POST['pagibig']}"
-#             Logs.objects.create(action=action, action_by=request.user, action_date=datetime.now())
+    context = {
+        
+    }
+    return render(request, 'home/notice-cards.html', context)
+    
 
-#             messages.success(request, f'Company Government deductions was successfully updated.')
-#             return redirect('company-gov-deducts', pk=pk)
-#     else:
-#         form = CompanyGovDeduct(instance=company)
-
-#     gen_settings = General_settings.objects.get(id=1)
-#     context = {
-#         'main_company': gen_settings.main_company,
-#         'page_nick': 'gov-deducts',
-#         'head': 'Update Government Deductions',
-#         'form': form,
-#         'company_id': pk
-#     }
-#     return render(request, 'hrms/company_update.html', context)
