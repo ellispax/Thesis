@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-j^q0d38(j!)#l8ge8+(rmf!f71v4i**8g7=0^4b(h7y59zi%)r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','sampledomain.com']
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
     'rest_framework',
     'crispy_forms',
     'accounts',
@@ -54,10 +54,13 @@ INSTALLED_APPS = [
     'chartjs',
     'crispy_bootstrap5',
     'crops',
+    'django.contrib.staticfiles',
+    'django.contrib.staticfiles.urls'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
