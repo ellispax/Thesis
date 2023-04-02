@@ -26,7 +26,7 @@ import requests, json
 @login_required
 def dashboard(request):
    # q={city name}
-    response = requests.get("https://api.openweathermap.org/data/2.5/weather?q=maputo&units=metric&appid=c263e33729247d585b1bf41636fc4062")
+    response = requests.get("https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&appid=c263e33729247d585b1bf41636fc4062")
     
 
     #response = requests.get("https://api.openweathermap.org/data/2.5/weather?lat=6.2088&lon=106.8456&units=metric&appid=c263e33729247d585b1bf41636fc4062")

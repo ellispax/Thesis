@@ -1,8 +1,21 @@
 {% extends "home/base.html" %} {% block content %}
+<style type="text/css">
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.card-header .btn {
+  margin-left: auto;
+}
+
+
+</style>
 <div class="card">
   <div class="card-header">
     <h4 class="card-title">{{ head }}</h4>
+    <a href="{% url 'settings'%}" class="btn btn-primary">Go Back</a>
   </div>
 
   <div class="card-body">
@@ -59,6 +72,7 @@
             <th scope="col" class="text-center">Size</th>
             <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center">Action</th>
+            <th scope="col" class="text-center">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -74,6 +88,11 @@
             <td class="align-middle text-center">
               <a href="{% url 'update-view' farm.pk %}" class="btn btn-danger"
                 >Update</a
+              >
+            </td>
+            <td class="align-middle text-center">
+              <a href="{% url 'update-view' farm.pk %}" class="btn btn-danger"
+                >Delete</a
               >
             </td>
           </tr>
