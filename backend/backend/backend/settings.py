@@ -11,9 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import dj_database_url
 
 from pathlib import Path
 
@@ -28,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j^q0d38(j!)#l8ge8+(rmf!f71v4i**8g7=0^4b(h7y59zi%)r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['smart-irrigation-sys.herokuapp.com']
+# ALLOWED_HOSTS = ['smart-irrigation-sys.herokuapp.com']
 
 
 # Application definition
@@ -55,7 +53,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'crops',
     'django.contrib.staticfiles',
-    'django.contrib.staticfiles.urls'
+    
 ]
 
 MIDDLEWARE = [
@@ -113,11 +111,12 @@ DATABASES = {
 # } 
 
 # }
+    'default': dj_database_url.config()
 
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
@@ -155,6 +154,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 STATIC_URL = 'static/'
