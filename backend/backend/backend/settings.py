@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j^q0d38(j!)#l8ge8+(rmf!f71v4i**8g7=0^4b(h7y59zi%)r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-# ALLOWED_HOSTS = ['smart-irrigation-sys.herokuapp.com']
+ALLOWED_HOSTS = ['cryptic-stream-32244.herokuapp.com/']
 
 
 # Application definition
