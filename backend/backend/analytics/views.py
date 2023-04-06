@@ -1,19 +1,7 @@
 from django.shortcuts import render
 from .models import measurements
-from django.views.generic import TemplateView
-#from chartjs.views.lines import BaseLineChartView
-
-# Create your views here.
-
 from django.shortcuts import render
-from rest_framework import viewsets
 from .models import measurements
-#from .serializers import MeasurementSerializer
-import json
-import datetime
-from django.db.models import Q
-
-
 from django.shortcuts import render
 from .models import measurements
 

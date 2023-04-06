@@ -26,9 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j^q0d38(j!)#l8ge8+(rmf!f71v4i**8g7=0^4b(h7y59zi%)r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://smart-irrigation-sys-production.up.railway.app']
 
 
 # Application definition
@@ -111,12 +112,20 @@ DATABASES = {
 # } 
 
 # }
-    'default': dj_database_url.config()
+    # 'default': dj_database_url.config()
 
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': '6fNX1Obw60u1T8MT2aFw',
+        'HOST': 'containers-us-west-194.railway.app',   
+        'PORT': '6075',
+}   
 }
 
 

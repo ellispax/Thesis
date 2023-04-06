@@ -1,17 +1,11 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User
-from django.http import HttpResponse
 from .models import Manage
-# from employee.models import Employee, Employee_hiring_details
 from transactions.models import Transaction
 from settings.models import Settings
-
 from .forms import ManageUpdateForm
-
 from django.contrib import messages
 import xlwt
-from datetime import datetime, timedelta
 from django.utils import timezone
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required

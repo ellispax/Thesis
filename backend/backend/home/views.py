@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Farm 
 from datetime import date
-# from employee.models import Employee, Employee_hiring_details
+
 from transactions.models import Transaction
 from settings.models import Settings
 
