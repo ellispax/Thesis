@@ -12,7 +12,7 @@ django-widget-tweaks==1.4.12
 djangorestframework==3.12.2
 gunicorn==20.1.0
 idna==3.4
-mysqlclient
+
 
 psycopg2==2.9.6
 psycopg2-binary==2.9.5
