@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-j^q0d38(j!)#l8ge8+(rmf!f71v4i**8g7=0^4b(h7y59zi%)r
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://smart-irrigation-sys-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://thesis-production-e8dc.up.railway.app']
 
 
 # Application definition
