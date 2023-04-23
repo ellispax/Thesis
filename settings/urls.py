@@ -10,6 +10,8 @@ urlpatterns = [
     path('add-crop', views.add_crop, name='add-crop'),
 	path("update-view/<int:pk>", views.update_farm, name="update-view"),
     path("update-crop/<int:pk>", views.update_crop, name="update-crop"),
+	path("delete-farm/<int:pk>", views.delete_farm, name="delete-farm"),
+
 	
 
 ]

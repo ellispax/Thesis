@@ -4,6 +4,7 @@ from .forms import GeneralInfoForm
 from django.contrib import messages
 from home.models import Farm
 from crops.models import Crops
+from manager.models import Manage
 from home.forms import FarmAddForm
 from .forms import UpdateFarmForm , AddCropForm , UpdateCropForm
 from django.contrib.auth.decorators import login_required
@@ -42,6 +43,19 @@ def show_crops(request):
     }
     return render(request, 'settings/crops.html', context)
 
+@login_required
+def delete_farm(request, pk):
+    farm = get_object_or_404(Farm, id=pk)
+    farm.delete()
+    Manage.objects.filter(farm=farm).delete()
+    messages.success(request, 'Farm and its records have been deleted successfully')
+    farms = Farm.objects.all()
+    context = {
+        'title': 'Udate Farms',
+        'head': 'Farm-Settings',
+        'crops': farms
+    }
+    return render(request, 'settings/all_farms.html', context)
 
 @login_required
 def update_farm(request, pk):
