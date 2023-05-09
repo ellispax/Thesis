@@ -19,12 +19,12 @@ class AddCropForm(forms.ModelForm):
 	class Meta:
 
 		model = Crops
-		fields = ['cropName', 'region', 'temp', 'pH', 'humidity', 'moisture', 'water_needed']
+		fields = ['cropName', 'region', 'temp', 'ph_min','ph_max', 'humidity', 'moisture']
 
 class UpdateCropForm(forms.ModelForm):
 	class Meta:
 		model = Crops
-		fields = ['cropName', 'region', 'temp', 'pH', 'humidity', 'moisture', 'water_needed']
+		fields = ['cropName', 'region', 'temp', 'ph_min','ph_max', 'humidity', 'moisture']
 		widgets = {
             'cropName': forms.TextInput(attrs={'readonly': 'readonly'}),
             

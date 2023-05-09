@@ -10,8 +10,9 @@ class Manage(models.Model):
     temp = models.FloatField()
     humidity = models.FloatField()
     moisture = models.FloatField()
-    pH = models.FloatField()
-    water = models.IntegerField()
+    ph_min = models.FloatField()
+    ph_max = models.FloatField()
+    #water = models.IntegerField()
 
     def __str__(self):
         return f'{self.farm}'
