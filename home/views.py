@@ -115,7 +115,7 @@ def farm_add(request):
             crop = Crops.objects.get(cropName=selected_crop)
 
             # create a new Manage object with the newly created farm as the foreign key
-            manage = Manage.objects.create(farm=farm, temp=crop.temp, humidity=crop.humidity, moisture=crop.moisture, ph_min=crop.ph_min, pH_max = crop.ph_max)
+            manage = Manage.objects.create(farm=farm, temp=crop.temp, humidity=crop.humidity, moisture=crop.moisture, ph_min=crop.ph_min, ph_max = crop.ph_max)
             #create a new row in the manage tab with same id as the new farm and vaues set to 0
             action = f"created farm '{farm.farm_name}'"
 

@@ -73,10 +73,11 @@
             <th scope="col" class="text-center">Crop Name</th>
             <th scope="col" class="text-center">Region</th>
             <th scope="col" class="text-center">Temperature</th>
-            <th scope="col" class="text-center">pH</th>
+            <th scope="col" class="text-center">pH Min</th>
+            <th scope="col" class="text-center">pH Max</th>
             <th scope="col" class="text-center">Humidity</th>
             <th scope="col" class="text-center">Moisture</th>
-            <th scope="col" class="text-center">Water</th>
+            
             <th scope="col" class="text-center">Action</th>
             <th scope="col" class="text-center">Action</th>
           </tr>
@@ -90,10 +91,11 @@
             <td class="align-middle text-center">{{ crop.cropName|upper }}</td>
             <td class="align-middle text-center">{{ crop.region|title }}</td>
             <td class="align-middle text-center">{{ crop.temp }}</td>
-            <td class="align-middle text-center">{{ crop.pH }}</td>
+            <td class="align-middle text-center">{{ crop.ph_min }}</td>
+            <td class="align-middle text-center">{{ crop.ph_max }}</td>
             <td class="align-middle text-center">{{ crop.humidity }}</td>
             <td class="align-middle text-center">{{ crop.moisture }}</td>
-            <td class="align-middle text-center">{{ crop.water_needed }}</td>
+            
             <td class="align-middle text-center">
               <a href="{%url 'update-crop' crop.pk%}" class="btn btn-danger"
                 >Update</a
