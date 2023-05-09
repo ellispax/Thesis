@@ -57,9 +57,10 @@
             <th scope="col" class="text-center">Farm Name</th>
             <th scope="col" class="text-center">Temperature (C)</th>
             <th scope="col" class="text-center">Humidity (%)</th>
-            <th scope="col" class="text-center">Moisture (kg)</th>
-            <th scope="col" class="text-center">pH</th>
-            <th scope="col" class="text-center">Water Amount</th>
+            <th scope="col" class="text-center">Moisture (%)</th>
+            <th scope="col" class="text-center">pH Min</th>
+            <th scope="col" class="text-center">pH Max</th>
+            
             <th scope="col" class="text-center">Action</th>
           </tr>
         </thead>
@@ -73,8 +74,9 @@
             <td class="align-middle text-center">{{ i.temp|title }}</td>
             <td class="align-middle text-center">{{ i.humidity }}</td>
             <td class="align-middle text-center">{{ i.moisture }}</td>
-            <td class="align-middle text-center">{{ i.pH }}</td>
-            <td class="align-middle text-center">{{ i.water }}</td>
+            <td class="align-middle text-center">{{ i.ph_min }}</td>
+            <td class="align-middle text-center">{{ i.ph_max }}</td>
+            
             <td class="align-middle text-center">
               <a href="{% url 'manage-update-view' i.pk %}" class="btn btn-danger"
                 >Update</a
