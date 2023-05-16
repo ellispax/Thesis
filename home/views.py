@@ -2,14 +2,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from .models import Farm 
+from .models import Farm, Notifications
 from datetime import date
 
 from transactions.models import Transaction
 from settings.models import Settings
-
+from django.db.models.expressions import RawSQL
 from .forms import FarmAddForm, FarmToggleStatus
-
+from analytics.models import measurements
 from django.contrib import messages
 import xlwt
 from datetime import datetime, timedelta
@@ -19,6 +19,8 @@ from django.contrib.auth.decorators import login_required
 from manager.models import Manage
 from crops.models import   Crops
 import requests, json
+from django.db.models import OuterRef, Subquery, Max
+# from django_email import send_mail
 
 
 
@@ -57,11 +59,14 @@ def dashboard(request):
     dt = date.today()
     
     farms = Farm.objects.all()
+    unique_farm_values = Notifications.objects.values('farm').distinct()
+    
+
 
     gen_settings = Settings.objects.get(id=1)
     context = {
         'main_farm': gen_settings.main_farm,
-        'title': 'farm',
+        'title': 'Dashboard',
         'head': 'Farms',
         'farms': farms,
         'date' : dt,
@@ -71,6 +76,7 @@ def dashboard(request):
         'humidity': humidity,
         'rain': rain_desc,
         'pressure': pressure,
+        
     }
     
     if gen_settings:
@@ -175,6 +181,11 @@ def farm_update(request, pk):
         'farm_id': pk
     }
     return render(request, 'home/farm_update.html', context)
+
+
+
+
+    
 
 def weather(request):
     

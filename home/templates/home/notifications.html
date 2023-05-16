@@ -1,0 +1,21 @@
+<div class="w3-panel w3-grey">
+    <h3>Notifications </h3>
+  </div>
+  <h1>Notifications</h1>
+    {% for notification in latest_notifications_list %}
+        <h2>{{ notification }}</h2>
+    {% endfor %}
+
+  <script>
+    $(function() {
+        var notifications = $('#notifications');
+        notifications.infiniteScroll({
+            url: '/notifications/',
+            append: 'li',
+            loading: function() {
+                $(this).append('<li class="loading"><img src="/static/images/loading.gif" alt="Loading"></li>');
+            },
+            direction: 'left'
+        });
+    });
+  </script>

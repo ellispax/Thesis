@@ -37,14 +37,19 @@
       color: black;
     }
 
+      
+
+
 
   </style>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
- 
 
   <script>
+
+
+
     function updateClock() {
       const now = new Date();
       const hours = now.getHours();
@@ -62,6 +67,26 @@
 <br>
 
 {%include 'home/cards.html'%}
+<!-- {%include 'home/notifications.html'%} -->
+
+<div class="w3-panel w3-grey">
+  <h3>Notifications </h3>
+</div>
+
+{% for notification in notifications %}
+        <h4>Farm:{{ notification.farm }} Message:{{ notification.notification }}</h4>
+       
+        <p>{{ notification.date }} {{ notification.time }}</p>
+    {% endfor %}
+<!-- <ul id="notifications" class="horizontal-infinite-scroll">
+  {% for notification in notifications %}
+      <li>
+          <h5>{{ notification.farm }}{{ notification.notification }}{{ notification.date }} {{ notification.time }}</h5>
+          <p></p>
+      </li>
+  {% endfor %}
+</ul> -->
+
 
 <div class="w3-panel w3-grey">
   <h3>Weather Outlook {{date}}</h3> <h3 id="clock"></h3>
@@ -70,4 +95,16 @@
 
 {%include 'home/notice-cards.html'%}
 {% endblock content %}
-
+<script>
+  $(function() {
+      var notifications = $('#notifications');
+      notifications.infiniteScroll({
+          url: '/notifications/',
+          append: 'li',
+          loading: function() {
+              $(this).append('<li class="loading"><img src="/static/images/loading.gif" alt="Loading"></li>');
+          },
+          direction: 'left'
+      });
+  });
+</script>

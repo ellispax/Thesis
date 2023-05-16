@@ -13,6 +13,16 @@
 
     <a href="{% url 'update-show'%}" class="btn btn-primary">Update Farm</a>
     <a href="{% url 'show-crops'%}" class="btn btn-primary">Check Crops</a>
+    {% if request.user.is_superuser %}
+      <a href="{%url 'users'%}" class="btn btn-primary"
+        >Users</a
+      >
+    {% else %}
+      <a href="#" class="btn btn-primary disabled"
+        >Users</a
+      >
+    {% endif %}
+    <!-- <a href="{%url 'users'%}" class="btn btn-primary">Users</a> -->
   </div>
 </div>
 

@@ -15,4 +15,10 @@ class Farm(models.Model):
     def __str__(self):
         return f'{self.farm_name}'
 
-    
+
+class Notifications(models.Model):
+    farm= models.ForeignKey(Farm, on_delete=models.CASCADE, related_name="n_farm_name")
+    notification = models.TextField()
+    date = models.DateField()
+    time = models.TimeField()
+    notified = models.BooleanField(default=False) 

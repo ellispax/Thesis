@@ -2,12 +2,51 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from .models import Settings
 from .forms import GeneralInfoForm
 from django.contrib import messages
+
 from home.models import Farm
 from crops.models import Crops
 from manager.models import Manage
 from home.forms import FarmAddForm
-from .forms import UpdateFarmForm , AddCropForm , UpdateCropForm
+from .forms import UpdateFarmForm , AddCropForm , UpdateCropForm, AddUserForm
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from django.contrib.auth.models import User
+
+def get_users(request):
+  users = User.objects.all()
+
+  context = {
+    'title': 'Users',
+    'head': 'User Settings',
+    'users': users,
+  }
+
+  return render(request, 'settings/users.html', context)
+
+@login_required# create crop
+def add_user(request):
+    if request.method == 'POST':
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            message = f'New user "{user.username}" was successfully created.'
+            messages.success(request, message)
+
+            return redirect('users')
+    else:
+        form = AddUserForm()
+        
+    gen_settings = Settings.objects.get(id=1)
+
+    context = {
+        'main_farm': gen_settings.main_farm,
+        'title': 'Add User',
+        'head': 'Add User',
+        'form': form
+    } 
+    return render(request, 'settings/add_users.html', context)
+
+
 
 @login_required
 def update_show(request):
@@ -55,7 +94,8 @@ def delete_farm(request, pk):
         'head': 'Farm-Settings',
         'crops': farms
     }
-    return render(request, 'settings/all_farms.html', context)
+    #return render(request, 'settings/all_farms.html', context)
+    return redirect('update-show')
 
 @login_required
 def update_farm(request, pk):
@@ -115,6 +155,22 @@ def update_crop(request, pk):
     }
     return render(request, 'settings/update_crop.html', context)
 
+
+@login_required
+def delete_crop(request, pk):
+    crop = get_object_or_404(Crops, id=pk)
+    crop.delete()
+    
+    messages.success(request, 'Crop has been deleted successfully')
+    #  crops = Crops.objects.all()
+    # context = {
+    #     'title': 'Udate Farms',
+    #     'head': 'Farm-Settings',
+    #     'crops': farms
+    # }
+    #return render(request, 'settings/all_farms.html', context)
+    return redirect('show-crops')
+
 @login_required# create crop
 def add_crop(request):
     if request.method == 'POST':
@@ -156,3 +212,4 @@ def general_info(request):
 		"main_farm": data
 	}
 	return render(request, "settings/s_home.html", context)
+

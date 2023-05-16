@@ -13,6 +13,7 @@ class measurements(models.Model):
     moisture = models.FloatField()
     timeStamp = models.CharField(default = '2023101000000',max_length=50)
     description = models.CharField(max_length=200)
+    notification = models.TextField(null=True)
 
     def __str__(self):
         return f'{self.farm}'
@@ -21,6 +22,6 @@ class water_used(models.Model):
     farm= models.ForeignKey(Farm, on_delete=models.CASCADE, related_name="wt_farm_name", null=True, blank=True)
     water_amnt = models.FloatField()
     date = models.DateField()
-    t1 = models.TimeField()
-    t2 = models.TimeField()
+    time = models.TimeField()
+  
     

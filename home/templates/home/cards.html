@@ -76,19 +76,33 @@
         <div class="row">
             {%for com in farms%}
                 {% if com.status == True %}
+
+                <div class="col-md-6 col-xl-6">
+                  <a href="{% url 'farm-show' %}">
+                      <div class="card bg-c-green order-card">
+                          <div class="card-block">
+                              <h4 class="m-b-20">{{ com.farm_name }}</h4>
+                              <h2 class="text-right"><i class="fas fa-check f-left"></i><span>{{ com.status }}</span></h2>
+                              <!-- <p class="m-b-0">Pending Teacher<span class="f-right">{{ pendingteachercount }}</span></p> -->
+                          </div>
+                      </div>
+                  </a>
+              </div>
+              
                 
-                    <div class="col-md-6 col-xl-6">
+                    <!-- <div class="col-md-6 col-xl-6">
                         <div class="card bg-c-green order-card">
                         <div class="card-block">
                             <h4 class="m-b-20">{{com.farm_name}}</h4>
                             <h2 class="text-right"><i class="fas fa-check f-left"></i><span>{{com.status}}</span></h2>
-                            <!-- <p class="m-b-0">Pending Teacher<span class="f-right">{{pendingteachercount}}</span></p> -->
+                           
                         </div>
                         </div>
-                    </div>
+                    </div> -->
                 {% else %}
                 
                     <div class="col-md-6 col-xl-6">
+                      <a href="{% url 'farm-show' %}">
                         <div class="card bg-c-yellow order-card">
                         <div class="card-block">
                             <h4 class="m-b-20">{{com.farm_name}}</h4>
@@ -96,6 +110,7 @@
                             <!-- <p class="m-b-0">Pending Students<span class="f-right">{{pendingstudentcount}}</span></p> -->
                         </div>
                         </div>
+                      </a>
                     </div>
                 {% endif %}
             {%endfor%}

@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'crops',
     'django.contrib.staticfiles',
+    # 'django-email',
+    #'django-sms',
     
 ]
 
@@ -189,3 +191,23 @@ CRISPY_TEMPLATE_PACK =  'bootstrap5'
 #LOGIN_REDIRECT_URL =  '/'
 #LOGIN_REDIRECT_URL =  'login/'
 LOGIN_URL = 'login'
+
+EMAIL_BACKEND = 'fastapi_mail.MailBackend'
+EMAIL_HOST = 'smtp.protonmail.com'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ellis.mapakama@proton.me'
+EMAIL_HOST_PASSWORD = '5e)54n=EYTk_!Ts'
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.protonmail.com'
+# EMAIL_PORT = 465
+# EMAIL_USE_SSL = True
+# EMAIL_HOST_USER = 'ellis.mapakama@proton.me'
+# EMAIL_HOST_PASSWORD = '5e)54n=EYTk_!Ts'
+
+SMS_BACKEND = 'django_sms.backends.twilio.TwilioBackend'
+TWILIO_ACCOUNT_SID = 'your_twilio_account_sid'
+TWILIO_AUTH_TOKEN = 'your_twilio_auth_token'
+TWILIO_PHONE_NUMBER = 'your_twilio_phone_number'

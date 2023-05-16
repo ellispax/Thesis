@@ -102,9 +102,18 @@
               >
             </td>
             <td class="align-middle text-center">
-              <a href="" class="btn btn-danger"
+              {% if request.user.is_superuser %}
+                <a href="{%url 'delete-crop' crop.pk%}" class="btn btn-danger"
+                  >Delete</a
+                >
+              {% else %}
+                <a href="#" class="btn btn-danger disabled"
+                  >Delete</a
+                >
+              {% endif %}
+              <!-- <a href="{%url 'delete-crop' crop.pk%}" class="btn btn-danger"
                 >Delete</a
-              >
+              > -->
             </td>
           </tr>
           {% endfor %}
