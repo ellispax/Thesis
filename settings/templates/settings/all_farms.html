@@ -86,13 +86,13 @@
             <td class="align-middle text-center">{{ farm.size }}</td>
             <td class="align-middle text-center">{{ farm.status }}</td>
             <td class="align-middle text-center">
-              <a href="{% url 'update-view' farm.pk %}" class="btn btn-danger"
+              <a href="{% url 'update-view' farm.pk %}" class="btn btn-primary"
                 >Update</a
               >
             </td>
             <td class="align-middle text-center">
               {% if request.user.is_superuser %}
-                <a href="{%url 'delete-farm'%}" class="btn btn-danger"
+                <a href="{%url 'delete-farm' farm.pk%}" class="btn btn-danger"
                   >Delete</a
                 >
               {% else %}
