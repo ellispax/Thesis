@@ -40,6 +40,7 @@
   
   <form class="" action="{% url 'login' %}" method="post">
     <div class="simple-login-container">
+      
       <h2>LOGIN TO THE SYSTEM</h2>
       {% csrf_token %} {% if messages %} {% for message in messages %}
 
