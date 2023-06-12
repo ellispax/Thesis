@@ -59,7 +59,17 @@ def dashboard(request):
     dt = date.today()
     
     farms = Farm.objects.all()
-    unique_farm_values = Notifications.objects.values('farm').distinct()
+    notifications = Notifications.objects.order_by('-date', '-time')[:3]
+    data = []
+
+    for notification in notifications:
+        data.append({
+            'date': notification.date,
+            'time': notification.time,
+            'farm_name': notification.farm,  # Assuming `Farm` model has a `name` field
+            'notification': notification.notification
+        })
+        
     
 
 
@@ -76,6 +86,7 @@ def dashboard(request):
         'humidity': humidity,
         'rain': rain_desc,
         'pressure': pressure,
+        'data':data
         
     }
     
@@ -182,6 +193,23 @@ def farm_update(request, pk):
     }
     return render(request, 'home/farm_update.html', context)
 
+
+from .models import Notifications
+
+def last_three_notifications(request):
+    notifications = Notifications.objects.order_by('-date', '-time')[:3]
+    data = []
+
+    for notification in notifications:
+        data.append({
+            'date': notification.date,
+            'time': notification.time,
+            'farm_name': notification.farm.name,  # Assuming `Farm` model has a `name` field
+            'notification': notification.notification
+        })
+        print(data)
+
+    return render(request, 'notifications.html', {'data': data})
 
 
 

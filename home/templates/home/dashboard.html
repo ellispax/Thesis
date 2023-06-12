@@ -67,25 +67,9 @@
 <br>
 
 {%include 'home/cards.html'%}
-<!-- {%include 'home/notifications.html'%} -->
+{%include 'home/notifications.html'%}
 
-<div class="w3-panel w3-grey">
-  <h3>Notifications </h3>
-</div>
 
-{% for notification in notifications %}
-        <h4>Farm:{{ notification.farm }} Message:{{ notification.notification }}</h4>
-       
-        <p>{{ notification.date }} {{ notification.time }}</p>
-    {% endfor %}
-<!-- <ul id="notifications" class="horizontal-infinite-scroll">
-  {% for notification in notifications %}
-      <li>
-          <h5>{{ notification.farm }}{{ notification.notification }}{{ notification.date }} {{ notification.time }}</h5>
-          <p></p>
-      </li>
-  {% endfor %}
-</ul> -->
 
 
 <div class="w3-panel w3-grey">

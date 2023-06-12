@@ -103,7 +103,7 @@ DATABASES = {
 #         'PORT': '3306',
 # }   
 
-#  'default': {
+#  'default1': {
 #         'ENGINE': 'django.db.backends.mysql', 
 #         'NAME': 'irrigation_back',
 #         'USER': 'root',

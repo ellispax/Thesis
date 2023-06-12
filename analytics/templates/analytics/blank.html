@@ -38,12 +38,12 @@
 <form method="post">
   {% csrf_token %}
   <label for="farm_id" class="inline">Farm ID:</label>
-  <select name="farm_id" id="farm_id" class="inline">
+  <select name="farm_id" id="farm_id" class="inline" style="width: 200px;height: 25px;">
     {% for farm in farms %}
     <option value="{{ farm.farm_id }}">{{ farm.farm_id }}</option>
     {% endfor %}
   </select>
-  <label for="date" class="inline">Date:</label>
+  <label  for="date" class="inline">Date:</label>
   <input type="date" id="date" name="date" class="inline" />
   <input type="submit" id="btn" value="Submit" class="inline" />
 </form>

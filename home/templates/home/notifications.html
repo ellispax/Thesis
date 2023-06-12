@@ -1,21 +1,63 @@
-<div class="w3-panel w3-grey">
-    <h3>Notifications </h3>
-  </div>
-  <h1>Notifications</h1>
-    {% for notification in latest_notifications_list %}
-        <h2>{{ notification }}</h2>
-    {% endfor %}
+<head>
+  <style>
+      .notification-strip {
+        display: flex;
+        overflow: hidden;
+        white-space: nowrap;
+      }
 
-  <script>
-    $(function() {
-        var notifications = $('#notifications');
-        notifications.infiniteScroll({
-            url: '/notifications/',
-            append: 'li',
-            loading: function() {
-                $(this).append('<li class="loading"><img src="/static/images/loading.gif" alt="Loading"></li>');
-            },
-            direction: 'left'
-        });
+      .notification {
+        display: inline-block;
+        padding: 10px;
+        margin-right: 20px;
+        background-color: #f2f2f2;
+      }
+
+  </style>
+</head>
+
+<div class="w3-panel w3-grey">
+  <h3>Notifications</h3>
+</div>
+<div class="notification-strip">
+  {% for notification in data %}
+    <div class="notification">
+      <strong>Date:</strong> {{ notification.date }}<br>
+      <strong>Time:</strong> {{ notification.time }}<br>
+      <strong>Farm Name:</strong> {{ notification.farm_name }}<br>
+      <strong>Notification:</strong> {{ notification.notification }}
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  (function () {
+    // Calculate the width of the notification strip
+    const strip = document.querySelector('.notification-strip');
+    const notifications = document.querySelectorAll('.notification');
+    const stripWidth = Array.from(notifications).reduce((width, notification) => {
+      return width + notification.offsetWidth + parseInt(getComputedStyle(notification).marginRight);
+    }, 0);
+
+    // Duplicate the notifications to create an infinite scroll effect
+    for (let i = 0; i < notifications.length; i++) {
+      strip.appendChild(notifications[i].cloneNode(true));
+    }
+
+    // Start the animation
+    function startAnimation() {
+      strip.style.transform = `translateX(-${stripWidth}px)`;
+      strip.style.transition = `transform ${stripWidth / 50}s linear`;
+    }
+
+    // Reset the animation when it ends
+    strip.addEventListener('transitionend', () => {
+      strip.style.transition = 'none';
+      strip.style.transform = 'translateX(0)';
+      setTimeout(startAnimation, 0);
     });
-  </script>
+
+    // Start the animation initially
+    setTimeout(startAnimation, 0);
+  })();
+</script>
