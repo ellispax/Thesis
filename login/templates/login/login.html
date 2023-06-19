@@ -40,6 +40,11 @@
   
   <form class="" action="{% url 'login' %}" method="post">
     <div class="simple-login-container">
+      <div class="row">
+        <div class="col-md-12 form-group" style="text-align: center;">
+          <img src="logo.png" alt="Your Logo" style="max-width: 200px; margin-bottom: 20px;">
+        </div>
+      </div>
       
       <h2>LOGIN TO THE SYSTEM</h2>
       {% csrf_token %} {% if messages %} {% for message in messages %}
