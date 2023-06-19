@@ -1,4 +1,4 @@
-{% load static %}
+
 <head>
 <style>
   body {
@@ -34,18 +34,14 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-<link rel="logo" href="{% static 'assets/images/logo.png' type='image/x-icon' %}">
+
 </head>
 
 <body style="background-color: rgb(207, 227, 207)">
   
   <form class="" action="{% url 'login' %}" method="post">
     <div class="simple-login-container">
-      <div class="row">
-        <div class="col-md-12 form-group" style="text-align: center;">
-          <img src="{{STATIC_URL}} 'logo.png'" alt="Your Logo" style="max-width: 200px; margin-bottom: 20px;">
-        </div>
-      </div>
+      
       
       <h2>LOGIN TO THE SYSTEM</h2>
       {% csrf_token %} {% if messages %} {% for message in messages %}
